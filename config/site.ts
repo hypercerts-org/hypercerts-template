@@ -8,6 +8,10 @@ interface SiteConfig {
     twitter: string;
     github: string;
   };
+  footerLinks: {
+    title: string;
+    url: string;
+  }[];
 }
 
 export const siteConfig: SiteConfig = {
@@ -21,13 +25,11 @@ export const siteConfig: SiteConfig = {
     twitter: "https://twitter.com/VoiceDeckDAO", // TODO: Update to @EdgeEsmeralda
     github: "https://github.com/hypercerts-org/voicedeck-fork",
   },
+  footerLinks: [
+    { title: "FAQs", url: "https://testnet.hypercerts.org/docs/intro" },
+    { title: "Terms of Use", url: "https://hypercerts.org/terms" },
+    { title: "Privacy Policy", url: "https://hypercerts.org/privacy" },
+    { title: "GitHub", url: "https://github.com/hypercerts-org" },
+    { title: "X (Twitter)", url: "https://twitter.com/hypercerts" },
+  ]
 };
-
-// TODO: Clean up, add icon, add to sight config?
-export const externalLinks = [
-  { title: "FAQs", url: "https://testnet.hypercerts.org/docs/intro" },
-  { title: "Terms of Use", url: "https://hypercerts.org/terms" },
-  { title: "Privacy Policy", url: "https://hypercerts.org/privacy" },
-  { title: "GitHub", url: "https://github.com/hypercerts-org" },
-  { title: "X (Twitter)", url: "https://twitter.com/hypercerts" },
-];
