@@ -40,13 +40,18 @@ const NavLinks = () => {
 	return (
 		<ul className="hidden gap-1 md:flex">
 			<li>
-				<NavLink href="/" isActive={isActive("/reports")}>
+				<NavLink href="/" isActive={isActive("/hypercerts")}>
 					Browse
 				</NavLink>
 			</li>
 			<li>
 				<NavLink href="/mint" isActive={isActive("/mint")}>
 					Mint
+				</NavLink>
+			</li>
+			<li>
+				<NavLink href="/hyperboard" isActive={isActive("/hyperboard")}>
+					Hyperboard
 				</NavLink>
 			</li>
 			<li>

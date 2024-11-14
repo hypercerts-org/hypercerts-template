@@ -12,8 +12,8 @@ const NavMenu = () => {
 				<div className="flex flex-1 items-center py-5 md:absolute md:left-[50%]">
 					<Link
 						className="flex w-full justify-center"
-						aria-label="ZuDeck Home"
-						href="/reports"
+						aria-label="Home"
+						href="/hypercerts"
 					>
 						<Logo
 							className="h-8 w-auto"
