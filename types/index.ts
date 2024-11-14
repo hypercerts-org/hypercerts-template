@@ -174,7 +174,7 @@ export type Contribution = {
 };
 
 export type SupportReportInfo = {
-	image: Partial<Metadata>["image"];
+	image: string;
 	title: Partial<Metadata>["name"];
 	hypercertId: Partial<HypercertData>["hypercert_id"];
 };
