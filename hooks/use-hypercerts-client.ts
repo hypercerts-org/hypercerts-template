@@ -1,4 +1,5 @@
 "use client";
+import { apiEnvironment } from "@/lib/constants";
 import { HypercertClient } from "@hypercerts-org/sdk";
 import { useMemo } from "react";
 import { useWalletClient } from "wagmi";
@@ -9,7 +10,7 @@ export const useHypercertClient = () => {
 	const client = useMemo(
 		() =>
 			new HypercertClient({
-				environment: "test",
+				environment: apiEnvironment,
 				// @ts-ignore - wagmi and viem have different typing
 				walletClient,
 			}),

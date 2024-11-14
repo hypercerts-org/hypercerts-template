@@ -1,8 +1,8 @@
 "use client";
 import React from "react";
 
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { SellFractionsForm } from "@/components/profile/sell-fractions-form";
+import { Button } from "@/components/ui/button";
 import {
 	Card,
 	CardContent,
@@ -10,7 +10,7 @@ import {
 	CardHeader,
 	CardTitle,
 } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import type { Address } from "viem";
 import { useAccount } from "wagmi";
 

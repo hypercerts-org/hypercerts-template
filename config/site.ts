@@ -15,15 +15,15 @@ interface SiteConfig {
 }
 
 export const siteConfig: SiteConfig = {
-  name: "Edge Esmeralda",
-  title: "Measuring impact through Edge Esmeralda",
+  name: "Hypercerts Template",
+  title: "Build with hypercerts",
   description:
-    "A month-long gathering for people building the future",
+    "Kickstart impact funding with hypercerts",
   localeDefault: "en",
   links: {
-    discord: "https://discord.gg/EUUupE3J", // TODO: Update to @EdgeEsmeralda
-    twitter: "https://twitter.com/VoiceDeckDAO", // TODO: Update to @EdgeEsmeralda
-    github: "https://github.com/hypercerts-org/voicedeck-fork",
+    discord: "https://discord.gg/JgGQZ29t", // TODO: Update to @EdgeEsmeralda
+    twitter: "https://twitter.com/hypercerts", // TODO: Update to @EdgeEsmeralda
+    github: "https://github.com/hypercerts-org/hypercerts-template",
   },
   footerLinks: [
     { title: "FAQs", url: "https://testnet.hypercerts.org/docs/intro" },

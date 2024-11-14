@@ -1,13 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
-import { useAccount } from "wagmi";
 import { sepolia } from "viem/chains";
+import { useAccount } from "wagmi";
 
-import {
-	HypercertExchangeClient,
-	QuoteType,
-} from "@hypercerts-org/marketplace-sdk";
 import { useEthersProvider } from "@/hooks/use-ethers-provider";
 import { useEthersSigner } from "@/hooks/use-ethers-signer";
+import {
+	HypercertExchangeClient
+} from "@hypercerts-org/marketplace-sdk";
 
 const useCreateHypercertOrder = () => {
 	const { chainId } = useAccount();

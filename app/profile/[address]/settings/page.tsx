@@ -1,5 +1,4 @@
 import { UserInfo } from "@/components/settings/user-info";
-import { VerifiedCitizen } from "@/components/settings/verified-citizen";
 import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
 
@@ -27,7 +26,6 @@ export default function SettingsPage({
 				<h1 className="font-semibold text-3xl md:text-4xl">Settings</h1>
 			</header>
 			<UserInfo />
-			{/* <VerifiedCitizen /> */}
 		</main>
 	);
 }

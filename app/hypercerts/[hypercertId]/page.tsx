@@ -1,21 +1,20 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import MapRenderer from "@/components/map-renderer";
-import BuyFraction from "@/components/marketplace/buy-fraction";
-import ReportSidebar, {
+import HypercertSidebar, {
 	type SidebarData,
-} from "@/components/report-details/report-sidebar";
+} from "@/components/hypercert-details/hypercert-sidebar";
+import BuyFraction from "@/components/marketplace/buy-fraction";
 import { Separator } from "@/components/ui/separator";
 import { getHypercertByHypercertId } from "@/hypercerts/getHypercertByHypercertId";
 import { ChevronLeft } from "lucide-react";
 import { Suspense } from "react";
 
-interface ReportPageProps {
+interface HypercertPageProps {
 	params: { hypercertId: string };
 }
 
-export default async function ReportPage({ params }: ReportPageProps) {
+export default async function HypercertPage({ params }: HypercertPageProps) {
 	const { hypercertId } = params;
 	const hypercertData = await getHypercertByHypercertId(hypercertId);
 
@@ -89,7 +88,7 @@ export default async function ReportPage({ params }: ReportPageProps) {
 							{hypercertData.metadata && (
 								<div>
 									<Separator className="my-6 block bg-stone-300 md:my-0 md:hidden" />
-									<ReportSidebar
+									<HypercertSidebar
 										metadata={hypercertData.metadata as SidebarData}
 										hypercert_id={hypercertId}
 										uri={hypercertData.uri ?? undefined}

@@ -93,22 +93,9 @@ export interface Report {
 	impactTimeframe: string;
 	contributors: string[];
 
-	// properties stored in CMS
-	cmsId: string;
-	dateCreated: string | null;
-	dateUpdated: string | null;
-	status: string;
-	slug: string;
-	story: string | null;
-	bcRatio: number | null;
-	villagesImpacted: number | null;
-	peopleImpacted: number | null;
-	verifiedBy: string[] | null;
-	byline: string | null;
-	totalCost: number;
-
 	// properties regarding to hypercert marketplace
 	fundedSoFar: number;
+	totalCost: number;
 
 	order: Order | null;
 }

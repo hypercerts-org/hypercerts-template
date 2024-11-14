@@ -1,24 +1,20 @@
-import { useMutation } from "@tanstack/react-query";
 import { useHypercertClient } from "@/hooks/use-hypercerts-client";
+import { useMutation } from "@tanstack/react-query";
 import { usePublicClient, useWaitForTransactionReceipt } from "wagmi";
 
+import { constructHypercertIdFromReceipt } from "@/utils/constructHypercertIdFromReceipt";
 import {
 	type HypercertMetadata,
 	TransferRestrictions,
 } from "@hypercerts-org/sdk";
-import { parseEther, type TransactionReceipt } from "viem";
-import { useEffect, useState } from "react";
-import { constructHypercertIdFromReceipt } from "@/utils/constructHypercertIdFromReceipt";
-import { useSendEmailAndUpdateGoogle } from "./use-send-email-and-update-google";
+import { useState } from "react";
+import type { TransactionReceipt } from "viem";
 
 type Payload = {
 	metaData: HypercertMetadata;
-	contactInfo: string;
-	amount: string;
 };
 
 const useMintHypercert = () => {
-	const [contactInfo, setContactInfo] = useState<string>("");
 	const [metaData, setMetaData] = useState<HypercertMetadata | undefined>();
 	const { client } = useHypercertClient();
 	const publicClient = usePublicClient();
@@ -42,15 +38,12 @@ const useMintHypercert = () => {
 		error: mintError,
 	} = useMutation({
 		mutationFn: (payload: Payload) => {
-			const { metaData, contactInfo, amount } = payload;
-			console.log("contactInfo", contactInfo);
-			console.log("amount", amount);
-			setContactInfo(contactInfo);
-			return client.mintClaim(
+			const { metaData } = payload;
+			return client.mintHypercert({
 				metaData,
-				parseEther("1"),
-				TransferRestrictions.FromCreatorOnly,
-			);
+				totalUnits: BigInt("100000000"),
+				transferRestriction: TransferRestrictions.FromCreatorOnly,
+			});
 		},
 	});
 
@@ -81,23 +74,6 @@ const useMintHypercert = () => {
 		},
 	});
 
-	// TODO: Update these values to better reflect the hook
-	const {
-		data: googleSheetsData,
-		mutate: sendEmailAndUpdateGoogle,
-		status: googleSheetsStatus,
-		error: googleSheetsError,
-	} = useSendEmailAndUpdateGoogle();
-
-	useEffect(() => {
-		if (receiptData?.hypercertId && contactInfo) {
-			sendEmailAndUpdateGoogle({
-				hypercertId: receiptData.hypercertId,
-				contactInfo,
-			});
-		}
-	}, [receiptData?.hypercertId, contactInfo, sendEmailAndUpdateGoogle]);
-
 	return {
 		mintHypercert,
 		mintStatus,
@@ -113,9 +89,6 @@ const useMintHypercert = () => {
 		isReceiptLoading,
 		isReceiptSuccess,
 		isReceiptError,
-		googleSheetsData,
-		googleSheetsStatus,
-		googleSheetsError,
 		metaData,
 		setMetaData,
 	};

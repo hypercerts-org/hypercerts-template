@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "NEXT_DEBUG=1 next build",
     "start": "next start",
     "lint": "biome check --apply ./app",
     "typecheck": "tsc -p tsconfig.json --noEmit",
@@ -68,12 +68,13 @@
     "react-day-picker": "^8.10.1",
     "react-dom": "^18.3.1",
     "react-hook-form": "^7.51.0",
+    "remeda": "^2.17.0",
     "server-only": "^0.0.1",
     "sharp": "^0.33.5",
     "tailwind-merge": "^2.2.1",
     "tailwindcss-animate": "^1.0.7",
     "use-dehydrated-state": "^0.1.0",
-    "vaul": "^0.9.0",
+    "vaul": "^1.1.1",
     "viem": "^2.21.35",
     "wagmi": "^2.12.25",
     "zod": "^3.23.8"

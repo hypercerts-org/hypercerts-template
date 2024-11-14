@@ -2,7 +2,7 @@ import { ResultOf, graphql } from "gql.tada";
 
 export const getHypercertsByHypercertIdQuery = graphql(`
   query GetHypercertByHypercertId($hypercert_id: String!) {
-    hypercerts(where: { hypercert_id: { contains: $hypercert_id } }) {
+    hypercerts(where: { hypercert_id: { eq: $hypercert_id } }) {
       data {
         creator_address
         hypercert_id
@@ -37,9 +37,8 @@ export type GetHypercertsByHypercertId = ResultOf<typeof getHypercertsByHypercer
 export const hypercertsByCreatorQuery = graphql(`
   query GetHypercertsByCreator($address: String!) {
     hypercerts(
-      sort: { by: { claim_attestation_count: descending } }
-      where: { creator_address: { contains: $address } }
-      count: COUNT
+      sort: { by: { attestations_count: descending } }
+      where: { creator_address: { eq: $address } }
     ) {
       count
       data {
@@ -72,7 +71,7 @@ export type HypercertsByCreatorQuery = ResultOf<typeof hypercertsByCreatorQuery>
 
 export const getFractionsByOwnerQuery = graphql(`
   query GetFractionsByOwner($address: String!) {
-    fractions(where: { owner_address: { contains: $address } }, count: COUNT) {
+    fractions(where: { owner_address: { eq: $address } }) {
       count
       data {
         id
@@ -96,21 +95,6 @@ export const getFractionsByOwnerQuery = graphql(`
 `);
 
 export type GetFractionsByOwner = ResultOf<typeof getFractionsByOwnerQuery>;
-
-// {
-//     hyperboards(where: {admin_id: {eq: ""}}) {
-//     data {
-//         sections {
-//             data {
-//                 entries {
-//                     id
-//                 }
-//             }
-//         }
-//         id
-//     }
-// }
-// }
 
 export const getHyperboardsByAdminQuery = graphql(
     `

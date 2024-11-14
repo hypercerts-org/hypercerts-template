@@ -1,7 +1,6 @@
 import { cn } from "@/lib/utils";
 import "@fontsource-variable/plus-jakarta-sans";
 import type { Metadata } from "next";
-import "vaul/dist/index.css";
 import "./globals.css";
 
 import { cookieToInitialState } from "wagmi";
@@ -12,11 +11,10 @@ import { siteConfig } from "@/config/site";
 import { config } from "@/config/wagmi";
 import { WagmiContextProvider } from "@/contexts/wagmi";
 import { headers } from "next/headers";
-import Script from "next/script";
 
 export const metadata: Metadata = {
-	metadataBase: new URL("https://app.voicedeck.org/"),
-	title: { default: siteConfig.name, template: "%s | Edge Esmeralda" },
+	metadataBase: new URL("https://hypercerts-template.vercel.app/"),
+	title: { default: siteConfig.name, template: "%s | hypercerts" },
 	description: siteConfig.description,
 	icons: [
 		{
@@ -33,17 +31,23 @@ export const metadata: Metadata = {
 		},
 	],
 	openGraph: {
-		title: { default: "Edge Esmeralda", template: "%s | Edge Esmeralda" },
+		title: {
+			default: "Hypercerts Template",
+			template: "%s | Hypercerts Template",
+		},
 		description: siteConfig.description,
 		type: "website",
-		images: [{ url: "/opengraph-image.png", alt: "Edge Esmeralda" }],
+		images: [{ url: "/hypercerts-opengraph.jpg", alt: "Hypercerts Template" }],
 	},
 	twitter: {
 		card: "summary_large_image",
-		site: "@edge-esmeralda",
-		title: { default: "Edge Esmeralda", template: "%s | Edge Esmeralda" },
+		site: "@hypercerts-template",
+		title: {
+			default: "Hypercerts template",
+			template: "%s | Hypercert template",
+		},
 		description: siteConfig.description,
-		images: [{ url: "/opengraph-image.png", alt: "Edge Esmeralda" }],
+		images: [{ url: "/hypercerts-opengraph.jpg", alt: "Hypercerts Template" }],
 	},
 };
 
@@ -65,26 +69,6 @@ export default function RootLayout({
 					<div className="flex-1">{children}</div>
 					<Footer />
 				</WagmiContextProvider>
-				<Script
-					id="matomo-tracking"
-					strategy="afterInteractive"
-					// biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation>
-					dangerouslySetInnerHTML={{
-						__html: `
-							var _paq = window._paq = window._paq || [];
-							_paq.push(['trackPageView']);
-							_paq.push(['enableLinkTracking']);
-							(function() {
-								var u="https://psedev.matomo.cloud/";
-								_paq.push(['setTrackerUrl', u+'matomo.php']);
-								_paq.push(['setSiteId', '13']);
-								var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-								g.async=true; g.src='https://cdn.matomo.cloud/psedev.matomo.cloud/matomo.js';
-								s.parentNode.insertBefore(g,s);
-							})();
-						`,
-					}}
-				/>
 			</body>
 		</html>
 	);

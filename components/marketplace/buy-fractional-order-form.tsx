@@ -8,10 +8,10 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useBuyFractionalMakerAsk } from "@/marketplace/hooks";
-import type { MarketplaceOrder } from "@/marketplace/types";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { formatEther } from "viem";
+import type { MarketplaceOrder } from "./buy-fraction-dialog";
 
 export interface BuyFractionalOrderFormValues {
 	unitAmount: string;

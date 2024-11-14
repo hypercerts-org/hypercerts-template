@@ -1,11 +1,14 @@
-import {HYPERCERTS_API_URL} from "@/config/graphql";
+import { HYPERCERTS_GRAPHQL_ENDPOINT } from "@/config/graphql";
+import {
+	getHyperboardsByIdQuery,
+	getHypercertsByHypercertIdQuery,
+} from "@/graphql/queries";
 import request from "graphql-request";
-import {getHyperboardsByIdQuery, getHypercertsByHypercertIdQuery,} from "@/graphql/queries";
 import { hyperboardId } from "@/config/hypercert";
 
 export const fetchHypercerts = async () => {
 	try {
-        const res = await request(HYPERCERTS_API_URL, getHyperboardsByIdQuery, {
+        const res = await request(HYPERCERTS_GRAPHQL_ENDPOINT, getHyperboardsByIdQuery, {
             id: hyperboardId,
         });
 		// const hypercertIds = await getHypercertIds();
@@ -20,7 +23,7 @@ export const fetchHypercerts = async () => {
 		console.log("Hypercert IDs", hypercertIds);
 
 		const hypercertPromises = hypercertIds.map((hypercertId) =>
-			request(HYPERCERTS_API_URL, getHypercertsByHypercertIdQuery, {
+			request(HYPERCERTS_GRAPHQL_ENDPOINT, getHypercertsByHypercertIdQuery, {
 				hypercert_id: hypercertId,
 			}),
 		);

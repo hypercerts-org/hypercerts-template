@@ -1,26 +1,21 @@
 import { defaultWagmiConfig } from "@web3modal/wagmi/react/config";
 
-import { cookieStorage, createStorage } from "wagmi";
-import { getVoiceDeckUrl } from "./endpoint";
+import { wcProjectId } from "@/lib/constants";
 import { sepolia } from "viem/chains";
-
-// Get projectId at https://cloud.walletconnect.com
-export const projectId = process.env.NEXT_PUBLIC_WC_PROJECT_ID;
-
-if (!projectId) throw new Error("Project ID is not defined");
+import { cookieStorage, createStorage } from "wagmi";
 
 // TODO: Add correct data
 const metadata = {
-  name: "VoiceDeck",
-  description: "Funding for Indian journalists",
-  url: getVoiceDeckUrl(), // origin must match your domain & subdomain
-  icons: ["https://avatars.githubusercontent.com/u/37784886"],
+  name: "Hypercerts Template",
+  description: "Launch your own hypercerts platform",
+  url: "http://localhost:3000", // origin must match your domain & subdomain
+  icons: ["https://avatars.githubusercontent.com/u/124626532"],
 };
 
 // Create wagmiConfig
 export const config = defaultWagmiConfig({
   chains: [sepolia], // required
-  projectId, // required
+  projectId: wcProjectId, // required
   metadata, // required
   ssr: true,
   storage: createStorage({

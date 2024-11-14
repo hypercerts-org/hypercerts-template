@@ -25,8 +25,8 @@ import {
   CreateFractionalOfferFormValues,
   useFetchHypercertFractionsByHypercertId,
 } from "@/components/marketplace/create-fractional-sale-form";
-import { MarketplaceOrder } from "@/marketplace/types";
 import { decodeContractError } from "@/lib/decodeContractError";
+import { MarketplaceOrder } from "@/components/marketplace/buy-fraction-dialog";
 
 export const useCreateOrderInSupabase = () => {
   const chainId = useChainId();

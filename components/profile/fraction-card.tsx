@@ -11,8 +11,6 @@ import { cn, formatCurrency, formatDate } from "@/lib/utils";
 import type { FractionMetaData } from "@/types";
 import type { Address } from "viem";
 import { ListForSaleButton } from "../marketplace/list-for-sale-button";
-import type { HistoryData } from "./history";
-import { SellFractionsDialog } from "./sell-fractions-dialog";
 
 type FractionCardProps = FractionMetaData & {
 	owner_address: Address;

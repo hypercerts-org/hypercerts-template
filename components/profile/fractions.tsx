@@ -1,14 +1,46 @@
-import type { Fraction, Hypercert } from "@/app/profile/[address]/page";
 import EmptyHistory from "@/assets/history-bg.svg";
+import type { Address } from "viem";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 import { HistoryCard } from "./fraction-card";
 
-// TODO: Replace mockData with actual data from the API,
+interface Metadata {
+	id: string;
+	name: string;
+	description: string;
+	image: string;
+	external_url: string;
+	contributors: string[];
+	work_scope: string[];
+	work_timeframe_from: Date;
+	work_timeframe_to: Date;
+}
+
+export interface Fraction {
+	id: string;
+	count: number;
+	fraction_id: string;
+	units: number;
+	owner_address: Address;
+	metadata: Metadata;
+}
+
+export interface Hypercert {
+	id: string;
+	hypercert_id: string;
+	units: number;
+	uri: string;
+	creator_address: Address;
+	contract: {
+		chain_id: number;
+	};
+	metadata: Metadata;
+}
+
 const History = ({
 	hypercerts,
 	fractions,
 }: { hypercerts: Hypercert[]; fractions: Fraction[] }) => {
-	console.log("hypercerts", hypercerts);
+	console.log("hypercerts in history", hypercerts);
 	const renderHypercertProfileCards = () => {
 		return hypercerts.map((hypercert) => (
 			<HistoryCard
