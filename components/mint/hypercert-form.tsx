@@ -74,13 +74,14 @@ const HypercertForm = () => {
 
 			const formattedMetadata = formatHypercertData({
 				...metadata,
-				version: "2.0",
-				properties: [
-					{
-						trait_type: "GeoJSON",
-						data: geoJSONData,
-					},
-				],
+				version: "1.0",
+				// properties: [
+				// 	{
+				// 		trait_type: "GeoJSON",
+				// 		data: geoJSONData,
+				// 	},
+				// ],
+				properties: [],
 				impactScope: ["all"],
 				excludedImpactScope: [],
 				workScope: badges,

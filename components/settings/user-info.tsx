@@ -21,7 +21,7 @@ const UserInfo = () => {
 	useEffect(() => {
 		if (!isConnected) {
 			// If not connected, redirect to /reports
-			router.push("/reports");
+			router.push("/hypercerts");
 		}
 	}, [isConnected, router]);
 

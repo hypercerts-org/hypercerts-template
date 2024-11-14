@@ -1,4 +1,3 @@
-// Helper function to assert that a value exists and return it
 export const assertExists = <T>(value: T | null | undefined): T => {
 	if (value === null || value === undefined) {
 		throw new Error("Value does not exist");
