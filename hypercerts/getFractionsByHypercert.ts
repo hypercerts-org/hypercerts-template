@@ -2,7 +2,7 @@
 //TODO server-only?
 import { graphql, readFragment } from "@/lib/graphql";
 
-import { HYPERCERTS_API_URL } from "@/config/graphql";
+import { HYPERCERTS_GRAPHQL_ENDPOINT } from "@/config/graphql";
 import { FractionStateFragment } from "@/hypercerts/fragments/fraction-state.fragment";
 import request from "graphql-request";
 
@@ -21,7 +21,7 @@ const query = graphql(
 );
 
 export async function getFractionsByHypercert(hypercertId: string) {
-  const res = await request(HYPERCERTS_API_URL, query, {
+  const res = await request(HYPERCERTS_GRAPHQL_ENDPOINT, query, {
     hypercert_id: hypercertId,
   });
 

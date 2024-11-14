@@ -1,65 +1,107 @@
-import Image from "next/image";
-
-import EdgeEsmeralda from "@/assets/EdgeEsmeralda.svg";
-import hero from "@/assets/EdgeEsmeraldaHero.webp";
-import noReportsImage from "@/assets/history-bg.svg";
-
-import { ReportsView } from "@/components/reports/reports-view";
+import { HypercertsView } from "@/components/hypercerts/hypercerts-view";
+import { Button } from "@/components/ui/button";
 import { siteConfig } from "@/config/site";
 import { FilterProvider } from "@/contexts/filter";
 import type { Hypercert } from "@/types";
 import { fetchHypercerts } from "@/utils/supabase/hypercerts";
+import { ArrowRight } from "lucide-react";
+import Image from "next/image";
 
-export const fetchCache = "force-no-store";
+import heroImage from "@/assets/HypercertsTemplate.webp";
+// Import static assets
+import noReportsImage from "@/assets/history-bg.svg";
 
-export default async function ReportsPage() {
+export const dynamic = "force-dynamic";
+export const revalidate = 3600;
+
+export default async function LandingPage() {
 	const { data, error } = await fetchHypercerts();
-	console.log("Hypercerts data:", data);
-	console.log("Hypercerts error:", error);
 
 	return (
-		<main className="flex flex-col gap-4 pb-[64px] md:pb-0">
-			<section className="flex flex-col items-center gap-4 p-4 md:p-8">
-				<header className="relative flex h-[420px] w-full max-w-screen-xl flex-col justify-end gap-4 overflow-hidden rounded-3xl p-4 text-vd-beige-100 2xl:h-[520px] min-[2560px]:h-[720px] min-[2560px]:max-w-screen-2xl 2xl:p-16 md:p-8">
-					<Image
-						className="-z-10 bg-center object-cover opacity-60 grayscale filter"
-						src={hero}
-						alt="Hero Image"
-						placeholder="blur"
-						sizes="(min-width: 2560px) 1536px, (min-width: 1400px) 1280px, 93.7vw"
-						fill
-						priority
-					/>
-					<EdgeEsmeralda className="self-center" />
-					{/* <h1 className="text-3xl lg:text-5xl 2xl:text-7xl font-bold text-left max-w-screen-md 2xl:max-w-screen-lg">
-						{siteConfig.title}
-					</h1> */}
-					<p className="max-w-screen-md self-center py-6 text-left font-semibold text-2xl text-black 2xl:max-w-screen-lg 2xl:text-4xl">
-						{siteConfig.description}
-					</p>
-				</header>
-				{/* <VoicedeckStats
-					numOfContributors={numOfContributors}
-					reports={uniqueReports}
-				/> */}
+		<main className="flex min-h-screen flex-col">
+			{/* Hero Section */}
+			<section className="mx-auto w-full max-w-7xl px-4 py-16 lg:px-8 sm:px-6">
+				<div className="relative mx-auto flex max-w-5xl flex-col items-center justify-center overflow-hidden rounded-3xl bg-black">
+					{/* Hero Image Container */}
+					<div className="relative aspect-[16/9] w-full">
+						<Image
+							src={heroImage}
+							alt="Hero background"
+							className="object-cover object-center opacity-60"
+							placeholder="blur"
+							priority
+							fill
+							sizes="(min-width: 1280px) 1152px, (min-width: 1040px) calc(100vw - 128px), calc(100vw - 32px)"
+						/>
+						{/* Gradient Overlay */}
+						<div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/50 to-black/80" />
+					</div>
+
+					{/* Content Overlay */}
+					<div className="absolute inset-0 flex flex-col items-center justify-center px-4 text-center">
+						<h1 className="animate-fade-up bg-gradient-to-br from-white to-gray-400 bg-clip-text font-bold text-4xl text-transparent tracking-tight sm:text-6xl">
+							{siteConfig.name}
+						</h1>
+						<p className="mx-auto mt-6 max-w-2xl animate-fade-up text-gray-200 text-lg [animation-delay:0.2s] sm:text-xl">
+							{siteConfig.description}
+						</p>
+						<div className="mt-10 flex animate-fade-up items-center justify-center gap-4 [animation-delay:0.4s]">
+							<Button size="lg" className="group" asChild>
+								<a href="#explore">
+									Explore Hypercerts
+									<ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+								</a>
+							</Button>
+						</div>
+					</div>
+				</div>
 			</section>
 
-			{data?.length ? (
-				<FilterProvider>
-					{/* TODO: Types return from API have a lot of nulls, need to figure out how to handle that */}
-					<ReportsView hypercerts={data as Hypercert[]} />
-				</FilterProvider>
-			) : (
-				<section className="flex w-full flex-col items-center gap-4 pt-6 pb-24 md:pb-6">
-					<div className="relative h-20 w-full md:h-40">
-						<Image fill src={noReportsImage} alt="circular pattern" />
-					</div>
-					<div className="text-center font-bold text-vd-beige-600 text-xl">
-						<p>Sorry, something went wrong.</p>
-						<p>Reports cannot be displayed right now.</p>
-					</div>
-				</section>
-			)}
+			{/* Content Section */}
+			<section
+				id="explore"
+				className="mx-auto w-full max-w-7xl px-4 py-16 lg:px-8 sm:px-6"
+			>
+				{data?.length ? (
+					<FilterProvider>
+						<div className="space-y-8">
+							<div className="flex items-center justify-between">
+								<h2 className="font-semibold text-2xl tracking-tight sm:text-3xl">
+									Explore Hypercerts
+								</h2>
+							</div>
+							<HypercertsView hypercerts={data as Hypercert[]} />
+						</div>
+					</FilterProvider>
+				) : (
+					<NoDataDisplay error={error} />
+				)}
+			</section>
 		</main>
+	);
+}
+
+function NoDataDisplay({ error }: { error?: Error }) {
+	return (
+		<div className="flex min-h-[400px] flex-col items-center justify-center rounded-lg bg-gray-50 px-4 py-12">
+			<div className="relative h-32 w-32 md:h-40 md:w-40">
+				<Image
+					src={noReportsImage}
+					alt="No data available"
+					fill
+					className="object-contain"
+				/>
+			</div>
+			<div className="mt-6 text-center">
+				<h2 className="font-semibold text-gray-900 text-xl">
+					{error ? "Something went wrong" : "No Hypercerts Found"}
+				</h2>
+				<p className="mt-2 text-gray-600">
+					{error
+						? "Please try again later."
+						: "There are no hypercerts available at the moment."}
+				</p>
+			</div>
+		</div>
 	);
 }

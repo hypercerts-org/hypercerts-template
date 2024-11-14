@@ -2,7 +2,7 @@ import { ResultOf, graphql } from "gql.tada";
 
 export const getHypercertsByHypercertIdQuery = graphql(`
   query GetHypercertByHypercertId($hypercert_id: String!) {
-    hypercerts(where: { hypercert_id: { contains: $hypercert_id } }) {
+    hypercerts(where: { hypercert_id: { eq: $hypercert_id } }) {
       data {
         creator_address
         hypercert_id
@@ -19,7 +19,6 @@ export const getHypercertsByHypercertIdQuery = graphql(`
           contributors
           external_url
           description
-          image
           impact_scope
           work_timeframe_from
           work_timeframe_to
@@ -37,9 +36,8 @@ export type GetHypercertsByHypercertId = ResultOf<typeof getHypercertsByHypercer
 export const hypercertsByCreatorQuery = graphql(`
   query GetHypercertsByCreator($address: String!) {
     hypercerts(
-      sort: { by: { claim_attestation_count: descending } }
-      where: { creator_address: { contains: $address } }
-      count: COUNT
+      sort: { by: { attestations_count: descending } }
+      where: { creator_address: { eq: $address } }
     ) {
       count
       data {
@@ -55,7 +53,6 @@ export const hypercertsByCreatorQuery = graphql(`
           id
           name
           description
-          image
           external_url
           work_scope
           contributors
@@ -72,23 +69,24 @@ export type HypercertsByCreatorQuery = ResultOf<typeof hypercertsByCreatorQuery>
 
 export const getFractionsByOwnerQuery = graphql(`
   query GetFractionsByOwner($address: String!) {
-    fractions(where: { owner_address: { contains: $address } }, count: COUNT) {
+    fractions(where: { owner_address: { eq: $address } }) {
       count
       data {
         id
         fraction_id
+        hypercert_id
         owner_address
         units
         metadata {
           id
           name
           description
-          image
           external_url
           work_scope
           contributors
           work_timeframe_from
           work_timeframe_to
+          properties
         }
       }
     }
@@ -96,21 +94,6 @@ export const getFractionsByOwnerQuery = graphql(`
 `);
 
 export type GetFractionsByOwner = ResultOf<typeof getFractionsByOwnerQuery>;
-
-// {
-//     hyperboards(where: {admin_id: {eq: ""}}) {
-//     data {
-//         sections {
-//             data {
-//                 entries {
-//                     id
-//                 }
-//             }
-//         }
-//         id
-//     }
-// }
-// }
 
 export const getHyperboardsByAdminQuery = graphql(
     `

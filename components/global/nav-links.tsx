@@ -45,13 +45,13 @@ const NavLinks = () => {
 				</NavLink>
 			</li>
 			<li>
-				<NavLink href="/submit" isActive={isActive("/submit")}>
-					Submit
+				<NavLink href="/mint" isActive={isActive("/mint")}>
+					Mint
 				</NavLink>
 			</li>
 			<li>
 				<a
-					href="https://testnet.hypercerts.org/docs/intro"
+					href="https://www.hypercerts.org/docs"
 					target="_blank"
 					rel="noopener noreferrer"
 					className={cn(

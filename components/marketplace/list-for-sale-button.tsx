@@ -17,8 +17,6 @@ import { useState } from "react";
 import type { Address } from "viem";
 import { useAccount } from "wagmi";
 
-// TODO: Lots of ts-ignores here, need to fix after update Hypercerts SDK
-
 type Props = {
 	hypercertId: string;
 	text?: string;

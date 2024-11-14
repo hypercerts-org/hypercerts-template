@@ -1,12 +1,28 @@
-import { base, baseSepolia, celo, optimism, sepolia } from "viem/chains";
 import type { Chain } from "viem";
+import {
+	arbitrum,
+	arbitrumSepolia,
+	base,
+	baseSepolia,
+	celo,
+	filecoinCalibration,
+	optimism,
+	sepolia,
+} from "viem/chains";
+import { assertExists } from "./assertExists";
 
-export const apiEnvironment: "test" | "production" = (process.env[
-	"NEXT_PUBLIC_API_ENVIRONMENT"
-] || "test") as "test" | "production";
+export const wcProjectId = assertExists(process.env.NEXT_PUBLIC_WC_PROJECT_ID);
 
-export const testNetChains = [sepolia, baseSepolia] as const;
-export const prodNetChains = [optimism, celo, base] as const;
+export const apiEnvironment: "test" | "production" = (process.env
+	.NEXT_PUBLIC_API_ENVIRONMENT || "test") as "test" | "production";
+
+export const testNetChains = [
+	sepolia,
+	baseSepolia,
+	arbitrumSepolia,
+	filecoinCalibration,
+] as const;
+export const prodNetChains = [optimism, celo, base, arbitrum] as const;
 
 export const supportedChains = (
 	apiEnvironment === "production" ? prodNetChains : testNetChains

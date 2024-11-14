@@ -100,7 +100,7 @@ const VDPaginator = ({
 							buttonVariants({ variant: "secondary", size: "sm" }),
 							"bg-vd-beige-300 hover:bg-vd-beige-400",
 							currentPage === 1
-								? "cursor-not-allowed opacity-50 hover:bg-initial focus:bg-none"
+								? "cursor-not-allowed opacity-50 focus:bg-none hover:bg-initial"
 								: "",
 						)}
 					/>
@@ -126,7 +126,7 @@ const VDPaginator = ({
 							buttonVariants({ variant: "secondary", size: "sm" }),
 							"bg-vd-beige-300 hover:bg-vd-beige-400",
 							currentPage === maxPage
-								? "cursor-not-allowed opacity-50 hover:bg-initial focus:bg-none"
+								? "cursor-not-allowed opacity-50 focus:bg-none hover:bg-initial"
 								: "",
 						)}
 					/>

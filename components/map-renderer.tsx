@@ -1,4 +1,3 @@
-// components/MapRenderer.tsx
 "use client";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -15,6 +14,8 @@ export type MapData = {
 	baseUrl: string;
 	metadata: HypercertMetadata;
 };
+
+// This is an example of how to render a map for a hypercert with geoJSON data
 export default function MapRenderer({ uri }: MapRendererProps) {
 	const [mapData, setMapData] = useState<MapData | null>(null);
 	const [error, setError] = useState<string | null>(null);

@@ -2,11 +2,11 @@ import request from "graphql-request";
 
 import { getHypercertsByHypercertIdQuery } from "@/graphql/queries";
 
-import { HYPERCERTS_API_URL } from "@/config/graphql";
+import { HYPERCERTS_GRAPHQL_ENDPOINT } from "@/config/graphql";
 
 export const getHypercertByHypercertId = async (hypercert_id: string) => {
 	const res = await request(
-		HYPERCERTS_API_URL,
+		HYPERCERTS_GRAPHQL_ENDPOINT,
 		getHypercertsByHypercertIdQuery,
 		{
 			hypercert_id: hypercert_id,

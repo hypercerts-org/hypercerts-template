@@ -1,21 +1,20 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import MapRenderer from "@/components/map-renderer";
-import BuyFraction from "@/components/marketplace/buy-fraction";
-import ReportSidebar, {
+import HypercertSidebar, {
 	type SidebarData,
-} from "@/components/report-details/report-sidebar";
+} from "@/components/hypercert-details/hypercert-sidebar";
+import BuyFraction from "@/components/marketplace/buy-fraction";
 import { Separator } from "@/components/ui/separator";
 import { getHypercertByHypercertId } from "@/hypercerts/getHypercertByHypercertId";
 import { ChevronLeft } from "lucide-react";
 import { Suspense } from "react";
 
-interface ReportPageProps {
+interface HypercertPageProps {
 	params: { hypercertId: string };
 }
 
-export default async function ReportPage({ params }: ReportPageProps) {
+export default async function HypercertPage({ params }: HypercertPageProps) {
 	const { hypercertId } = params;
 	const hypercertData = await getHypercertByHypercertId(hypercertId);
 
@@ -26,8 +25,6 @@ export default async function ReportPage({ params }: ReportPageProps) {
 	if (!hypercertData || !hypercertData.metadata) {
 		return <div>No hypercert data found</div>;
 	}
-
-	console.log("report", hypercertData);
 
 	return (
 		<main className="flex h-svh flex-col justify-between pt-6 md:h-fit md:px-12">
@@ -64,11 +61,11 @@ export default async function ReportPage({ params }: ReportPageProps) {
 						</section>
 						<section className="flex flex-col gap-2 pt-2 md:flex-row md:gap-12">
 							<section className="flex flex-col gap-4">
-								{hypercertData.metadata.image && (
+								{hypercertId && (
 									<div className="h-[300px] min-w-[300px] lg:h-[350px] lg:min-w-[500px]">
 										<div className="relative h-full w-full overflow-hidden rounded-lg border border-slate-800 bg-black">
 											<Image
-												src={hypercertData.metadata.image}
+												src={`/api/hypercerts/${hypercertId}/image`}
 												alt="Report illustration"
 												className="object-contain object-top p-2"
 												fill
@@ -89,7 +86,7 @@ export default async function ReportPage({ params }: ReportPageProps) {
 							{hypercertData.metadata && (
 								<div>
 									<Separator className="my-6 block bg-stone-300 md:my-0 md:hidden" />
-									<ReportSidebar
+									<HypercertSidebar
 										metadata={hypercertData.metadata as SidebarData}
 										hypercert_id={hypercertId}
 										uri={hypercertData.uri ?? undefined}
@@ -99,13 +96,6 @@ export default async function ReportPage({ params }: ReportPageProps) {
 						</section>
 					</>
 				)}
-				{/* {contributions && (
-					<div>
-						<Separator className="my-6 block bg-stone-300 md:hidden" />
-						<ReportSupportFeed contributions={contributions} />
-					</div>
-				)}
-					*/}
 			</div>
 		</main>
 	);
