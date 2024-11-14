@@ -4,7 +4,7 @@ import { Settings2 } from "lucide-react";
 import Link from "next/link";
 import type { Address } from "viem";
 
-import History from "@/components/profile/fractions";
+import History from "@/components/profile/history";
 import { SideBar } from "@/components/profile/sidebar";
 import { buttonVariants } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -32,7 +32,6 @@ export function ProfileContent({
 				hypercertsCount={hypercertsCount}
 				fractionsCount={fractionsCount}
 			/>
-			<SideBar />
 			<History hypercerts={hypercerts} fractions={fractions} />
 		</main>
 	);

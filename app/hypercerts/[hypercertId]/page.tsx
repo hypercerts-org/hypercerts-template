@@ -26,8 +26,6 @@ export default async function HypercertPage({ params }: HypercertPageProps) {
 		return <div>No hypercert data found</div>;
 	}
 
-	console.log("report", hypercertData);
-
 	return (
 		<main className="flex h-svh flex-col justify-between pt-6 md:h-fit md:px-12">
 			{/* 192px is added to account for the funding progress on mobile */}
@@ -63,11 +61,11 @@ export default async function HypercertPage({ params }: HypercertPageProps) {
 						</section>
 						<section className="flex flex-col gap-2 pt-2 md:flex-row md:gap-12">
 							<section className="flex flex-col gap-4">
-								{hypercertData.metadata.image && (
+								{hypercertId && (
 									<div className="h-[300px] min-w-[300px] lg:h-[350px] lg:min-w-[500px]">
 										<div className="relative h-full w-full overflow-hidden rounded-lg border border-slate-800 bg-black">
 											<Image
-												src={hypercertData.metadata.image}
+												src={`/api/hypercerts/${hypercertId}/image`}
 												alt="Report illustration"
 												className="object-contain object-top p-2"
 												fill
@@ -98,13 +96,6 @@ export default async function HypercertPage({ params }: HypercertPageProps) {
 						</section>
 					</>
 				)}
-				{/* {contributions && (
-					<div>
-						<Separator className="my-6 block bg-stone-300 md:hidden" />
-						<ReportSupportFeed contributions={contributions} />
-					</div>
-				)}
-					*/}
 			</div>
 		</main>
 	);

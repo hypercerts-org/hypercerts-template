@@ -19,7 +19,6 @@ export interface SidebarData {
 	work_timeframe_to: Date;
 	work_timeframe_from: Date;
 	impact_scope: string[];
-	image: string;
 	description: string;
 	external_url: string;
 	contributors: string[];

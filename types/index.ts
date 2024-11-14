@@ -14,7 +14,6 @@ export interface Hypercert {
 		work_timeframe_to: Date;
 		work_timeframe_from: Date;
 		impact_scope: string[];
-		image: string;
 		description: string;
 		external_url: string;
 		contributors: string[];
@@ -31,7 +30,6 @@ export type Metadata = {
 	description: string;
 	external_url: string;
 	id: string;
-	image: string;
 	impact_scope: string[];
 	impact_timeframe_from: number;
 	impact_timeframe_to: number;
@@ -47,8 +45,20 @@ export type Metadata = {
 
 export type Fraction = {
 	id: string;
-	units: number;
+	units: bigint;
 	owner_address: string;
+	hypercert_id: string;
+	fraction_id: string;
+	metadata: {
+		name: string;
+		description: string;
+		external_url: string;
+		work_scope: string[];
+		contributors: string[];
+		work_timeframe_from: Date;
+		work_timeframe_to: Date;
+		properties: JSON;
+	};
 };
 
 export type HypercertData = {
@@ -64,7 +74,6 @@ export type HypercertData = {
 	creator_address: string;
 	metadata: Metadata;
 	fractions: Fraction[];
-	// Add other fields from the `claims` table if there are any
 };
 
 export type FractionMetaData = {

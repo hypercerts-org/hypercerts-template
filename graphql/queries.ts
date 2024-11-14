@@ -19,7 +19,6 @@ export const getHypercertsByHypercertIdQuery = graphql(`
           contributors
           external_url
           description
-          image
           impact_scope
           work_timeframe_from
           work_timeframe_to
@@ -54,7 +53,6 @@ export const hypercertsByCreatorQuery = graphql(`
           id
           name
           description
-          image
           external_url
           work_scope
           contributors
@@ -76,18 +74,19 @@ export const getFractionsByOwnerQuery = graphql(`
       data {
         id
         fraction_id
+        hypercert_id
         owner_address
         units
         metadata {
           id
           name
           description
-          image
           external_url
           work_scope
           contributors
           work_timeframe_from
           work_timeframe_to
+          properties
         }
       }
     }

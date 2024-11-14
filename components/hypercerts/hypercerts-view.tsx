@@ -80,26 +80,8 @@ export function HypercertsView({ hypercerts }: { hypercerts: Hypercert[] }) {
 	);
 
 	return (
-		<section
-			className="flex max-w-screen-xl border-t border-t-stone-300 min-[2560px]:mx-auto min-[2560px]:grid min-[2560px]:w-[64vw] min-[2560px]:grid-cols-[380px_1fr]"
-			id="discover"
-		>
-			{/* <div className="hidden md:block">
-				<SidebarFilter
-					isOpen={filterOpen}
-					setIsOpen={setFilterOpen}
-					filterOptions={filterOptions}
-				/>
-			</div> */}
+		<section className="flex max-w-screen-xl border-t border-t-stone-300 min-[2560px]:mx-auto min-[2560px]:grid min-[2560px]:w-[64vw] min-[2560px]:grid-cols-[380px_1fr]">
 			<section className="container flex-1 px-3 py-6 md:px-8 md:py-8">
-				{/* <ReportsHeader
-					reports={reports}
-					filterOverlayOpen={filterOpen}
-					setFilterOverlayOpen={setFilterOpen}
-					filterOptions={filterOptions}
-					activeSort={activeSortOption}
-					setActiveSort={setActiveSortOption}
-				/> */}
 				{filteredReports.length > 0 && (
 					<ShowingDisplay
 						currentPage={currentPage}
@@ -114,7 +96,6 @@ export function HypercertsView({ hypercerts }: { hypercerts: Hypercert[] }) {
 							<HypercertCard
 								key={hypercert.hypercert_id}
 								hypercert_id={hypercert.hypercert_id}
-								image={hypercert.metadata.image}
 								name={hypercert.metadata.name}
 								chain_id={hypercert.contract.chain_id}
 								totalUnitsForSale={hypercert.orders.totalUnitsForSale}
