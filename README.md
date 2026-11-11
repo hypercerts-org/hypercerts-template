@@ -1,4 +1,10 @@
-# Hypercerts template repository
+# Hypercerts template repository (archived)
+
+> [!IMPORTANT]
+> This repository is archived and no longer maintained. It holds a starter, from 2024, for building a fundraising platform on Hypercerts v1. It began as a fork of [VoiceDeck](https://github.com/VoiceDeck/app).
+
+- Hypercerts has reached v2, and the v1 app has been retired. See [hypercerts.org/v1-retired](https://hypercerts.org/v1-retired).
+- For Hypercerts v2, see [hypercerts.org](https://hypercerts.org) and the [documentation](https://docs.hypercerts.org).
 
 Welcome to the Hypercerts Template! This is a simple template for creating a fundraising platform based on hypercerts.
 
@@ -53,7 +59,7 @@ Bun
 #### Clone the repository
 
 ```bash
-  git clone ggit@github.com:hypercerts-org/hypercerts-template.git
+  git clone git@github.com:hypercerts-org/hypercerts-template.git
 ```
 
 #### Install dependencies
@@ -83,3 +89,7 @@ You can start editing the page by modifying `app/reports/page.tsx`.
 - [ethers.js Documentation](https://docs.ethers.org/v6/) The ethers.js library aims to be a complete and compact library for interacting with the Ethereum Blockchain and its ecosystem. It is often used to create decentralized applications (dapps), wallets (such as MetaMask and Tally) and other tools and simple scripts that require reading and writing to the blockchain.
 - [viem](https://viem.sh/docs/introduction) Viem is a TypeScript Interface for Ethereum that provides low-level stateless primitives for interacting with Ethereum. It delivers a great developer experience through modular and composable APIs, comprehensive documentation, and automatic type safety and inference.
 - [WalletConnect Documentation](https://docs.walletconnect.com/) The Web3Modal SDK allows you to easily connect your Web3 app with wallets. It provides a simple and intuitive interface for requesting actions such as signing transactions and interacting with smart contracts on the blockchain.
+
+## License
+
+MIT, like [VoiceDeck](https://github.com/VoiceDeck/app), where this repository began. See [LICENSE](LICENSE).
